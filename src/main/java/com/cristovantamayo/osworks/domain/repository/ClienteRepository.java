@@ -11,5 +11,6 @@ import com.cristovantamayo.osworks.domain.model.Cliente;
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
 	List<Cliente> findAll();
+	Cliente findByEmail(String email);
 	
 }
