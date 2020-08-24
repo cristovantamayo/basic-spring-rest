@@ -1,6 +1,6 @@
 package com.cristovantamayo.osworks.api.exceptonhandler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(BusinessException.class)
 	public ResponseEntity<Object> handlerBusiness(BusinessException ex, WebRequest request) {
 		HttpStatus status = HttpStatus.BAD_REQUEST;
-		Problem problem = Problem.of(status.value(), LocalDateTime.now(), ex.getMessage(), null);
+		Problem problem = Problem.of(status.value(), OffsetDateTime.now(), ex.getMessage(), null);
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
 	}
 	
@@ -47,7 +47,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		Problem problem = Problem.of(
 				status.value(),
-				LocalDateTime.now(),
+				OffsetDateTime.now(),
 				"Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.",
 				fields
 			);
